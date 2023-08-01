@@ -1,0 +1,60 @@
+{
+  "name": "fcbarcelona",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/fcbarcelona/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/fcbarcelona",
+        "main": "apps/fcbarcelona/src/main.ts",
+        "tsConfig": "apps/fcbarcelona/tsconfig.app.json",
+        "assets": ["apps/fcbarcelona/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/fcbarcelona/src/environments/environment.ts",
+              "with": "apps/fcbarcelona/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "fcbarcelona:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "fcbarcelona:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fcbarcelona/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fcbarcelona"],
+      "options": {
+        "jestConfig": "apps/fcbarcelona/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
