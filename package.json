@@ -2,8 +2,14 @@
   "name": "mr-utils",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "18.16.0"
+  },
   "scripts": {
     "start": "nx serve",
+    "start:dev": "nx serve",
+    "start:debu": "nx serve",
+    "start:prod": "node dist/main",
     "build": "nx build",
     "test": "nx test"
   },
@@ -12,6 +18,10 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cron": "^2.4.0",
+    "nest-clean": "^1.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0"
